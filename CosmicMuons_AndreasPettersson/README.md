@@ -10,7 +10,7 @@ Three selections exist for MIM-like (minimally ionizing muons) events. These are
 
 We can build a map that stores information for all scintillator bars in the back-HCal using the buildMap function.
 
-With graphcheck enabled, the script plots the path of the muons in 3D plots.
+With graphcheck enabled, the script plots the path of the muons in 3D plots.\
 With estimatedcheck enabled, the script calculates the estimated energy in each bar.
 
 We can analyse horisontal and vertical bars individually by changing chose_orientation_.
@@ -26,7 +26,7 @@ I used ldmx/dev:4.2.2.
 
 To change image:
 
-denv config image ldmx/dev:4.2.2
+denv config image ldmx/dev:4.2.2\
 denv config image pull
 
 ## Generate an LHE-file
@@ -36,7 +36,7 @@ The LHE-file contains initial information about the muon.
 run:
 denv python3 lheData/cosmic_muon_lhe_generator_v14.py --numEvents=xx --detector=backHcal
 
-more options exist for the generator. See cosmic_muon_lhe_generator_v14.py.
+more options exist for the generator. See cosmic_muon_lhe_generator_v14.py.\
 An LHE-file is now created in lheData/
 
 ## Simulate in Geant4
