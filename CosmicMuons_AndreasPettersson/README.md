@@ -22,12 +22,11 @@ Fork this repository and cd into it.
 ## Install denv and change image
 install denv as according to https://ldmx-software.github.io/
 
-I used ldmx/dev:4.2.2. 
+Change image:\
+denv init ldmx/pro:v4.2.12
 
-To change image:
-
-denv config image ldmx/dev:4.2.2\
-denv config image pull
+I used ldmx/dev:4.2.2, but the script works for the pro version.\
+See the ldmx-sw documentation for setting up the dev version.
 
 ## Generate an LHE-file
 
