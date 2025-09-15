@@ -14,3 +14,5 @@ This runs the particle flow algorithm and the parameters are the same as in the 
 3. produceGraph.py - "taskset -c 0,1,2 just fire produceGraph.py 10000 60"
 
 This uses the Analyzer to produce the graphs used in the thesis. It does so for single events like the reconstructed hits in a certain region and also plots for all events like the scoring plane hits. The produced file can be read via a root browser.
+
+Notice that figures 10 and 11 show intermediate steps of the project work. To obtain these, the reconstructed hits must be modified or one uses the previous version of reconstructed hits without the fixes described in the project.
