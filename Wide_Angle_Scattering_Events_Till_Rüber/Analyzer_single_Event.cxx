@@ -112,22 +112,12 @@ void Analyzer_single_Event::analyze(const framework::Event& event) {
   TH2F* hist_recHits = new TH2F("histRecHits", "Rec Hits;Z [mm];X [mm]", 
         100, 200, 1000,  // Z bins and range
         100, -1500, 1500); // X bins and range
-  
-  TH2F* hist_simpleRecHits_stripCenter = new TH2F("histSimpleRecHits_stripCenter", "; Z [mm];X [mm]", 
-        100, 200, 1000,  // Z bins and range
-        100, -1500, 1500); // X bins and range
-
-  TH2F* hist_simpleRecHits_withBug = new TH2F("histSimpleRecHits_withBug", ";Z [mm];X [mm]", 
-        100, 200, 1000,  // Z bins and range
-        100, -1500, 1500); // X bins and range
 
    TGraph* graph_cluster = new TGraph();
 
    TGraphErrors* graph_clusterE = new TGraphErrors();
 
   hist_simHits->SetDirectory(dir);
-  hist_simpleRecHits_stripCenter->SetDirectory(dir);
-  hist_simpleRecHits_withBug->SetDirectory(dir);
   hist_simpleRecHits->SetDirectory(dir);
   hist_recHits->SetDirectory(dir);
 
@@ -135,17 +125,6 @@ void Analyzer_single_Event::analyze(const framework::Event& event) {
   for (const auto& hit : hcal_sim_hits) {
     hist_simHits->Fill(hit.getPosition()[2],hit.getPosition()[0],hit.getEdep());
   }
-
-  const auto& simple_rec_hits_stripCenter = event.getCollection<ldmx::HcalHit>("HcalSimpleRecHitsStripCenter");
-  for (const auto& hit :simple_rec_hits_stripCenter){
-    hist_simpleRecHits_stripCenter->Fill(hit.getZPos(),hit.getXPos(),hit.getEnergy());
-  }
-
-  const auto& simple_rec_hits_withBug = event.getCollection<ldmx::HcalHit>("HcalSimpleRecHitsWithBug");
-  for (const auto& hit :simple_rec_hits_withBug){
-    hist_simpleRecHits_withBug->Fill(hit.getZPos(),hit.getXPos(),hit.getEnergy());
-  }
-
 
   const auto& simple_rec_hits_1 = event.getCollection<ldmx::HcalHit>("HcalSimpleRecHits");
   for (const auto& hit :simple_rec_hits_1){
@@ -260,30 +239,6 @@ void Analyzer_single_Event::analyze(const framework::Event& event) {
 
   c3_simHits.Write();
 
-  // Simple Rec Hits Strip Center
-
-  TCanvas c4_simpleRecHits_stripCenter("c4_simpleRecHits_stripCenter","",800,600);
-
-  hist_simpleRecHits_stripCenter->GetXaxis()->SetRangeUser(230, 800);
-  hist_simpleRecHits_stripCenter->GetYaxis()->SetRangeUser(0, 800);
-
-  hist_simpleRecHits_stripCenter->Draw("COLZ");
-  //extrapTrack->Draw("same");
-
-  c4_simpleRecHits_stripCenter.Write();
-
-  // Simple Rec Hits with Bug
-
-  TCanvas c5_simpleRecHits_withBug("c5_simpleRecHits_withBug","",800,600);
-
-  hist_simpleRecHits_withBug->GetXaxis()->SetRangeUser(230, 800);
-  hist_simpleRecHits_withBug->GetYaxis()->SetRangeUser(0, 800);
-
-  hist_simpleRecHits_withBug->Draw("COLZ");
-  //extrapTrack->Draw("same");
-
-  c5_simpleRecHits_withBug.Write();
-
   // Simple Rec Hits
 
   TCanvas c6_simpleRecHits("c6_simpleRecHits","",800,600);
@@ -294,7 +249,6 @@ void Analyzer_single_Event::analyze(const framework::Event& event) {
   hist_simpleRecHits->Draw("COLZ");
 
   c6_simpleRecHits.Write();
-
     
   int nPFCand = 0;
   int nPIDTrack = 0;
@@ -306,9 +260,6 @@ void Analyzer_single_Event::analyze(const framework::Event& event) {
   int nPIDTrackEcalHcal = 0;
 
   double simple_rec_hits_energy_sum = 0.0;
-
-  
-
 
   //const auto& pfCandidates = event.getCollection<ldmx::PFCandidate>("PFCandidates");
   for (const auto& entry : pfCandidates){
