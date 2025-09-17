@@ -1,4 +1,7 @@
-I've been running my code using the latest development image (March 2025). It can be run through the following steps:
+I've been running my code using the latest development image (March 2025). To use LDMX code in general, one need to install "denv" and here is a descripton about how to do that: https://ldmx-software.github.io/using/getting-started.html . Using the "denv fire" command, scripts that can be found in the repository can be run. However, if one wants to run their personal developed code in the LDMX environment, one needs to use "just" instead of "denv". An installation guide to "just" can be found here: https://ldmx-software.github.io/developing/getting-started.html . There it is also described how to clone the current LDMX-SW repository so that one can make and test changes on the own computer.
+
+The files used in this project work can be run through the following steps:
+
 1. sim_GPS.py - "taskset -c 0,1,2 just fire sim_GPS.py 10000 60"
 
 This produces 10000 wide angle scattering events and runs the reconstrcution
